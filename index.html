@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HimaruSetup - Katalog & Portofolio</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <a href="https://sociabuzz.com/himaruofficialgaming/tribe" target="_blank" class="floating-donasi">
+    <svg style="width:20px;height:20px;fill:currentColor;" viewBox="0 0 24 24">
+      <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+    </svg>
+    Support Donasi
+  </a>
+
+  <div class="menu-overlay" id="menu-overlay" onclick="toggleMenu()"></div>
+
+  <header>
+  <nav>
+    <!-- Logo dengan efek animasi Back to Top -->
+    <button class="logo-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+      <div class="text">
+        <span>Himaru</span>
+        <span>Setup</span>
+      </div>
+      <div class="clone">
+        <span>Follow</span>
+        <span>Me</span>
+      </div>
+      <svg stroke-width="2" stroke="currentColor" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="20px">
+        <path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linejoin="round" stroke-linecap="round"></path>
+      </svg>
+    </button>
+      
+      <button class="btn-uiverse" onclick="toggleMenu()">
+        <span class="icon">
+          <svg viewBox="0 0 175 80" width="25" height="25">
+            <rect width="80" height="15" fill="#f0f0f0" rx="10"></rect>
+            <rect y="30" width="80" height="15" fill="#f0f0f0" rx="10"></rect>
+            <rect y="60" width="80" height="15" fill="#f0f0f0" rx="10"></rect>
+          </svg>
+        </span>
+        <span class="text">MENU</span>
+      </button>
+
+    </nav>
+  </header>
+
+
+
+  <div class="sidebar" id="sidebar">
+    <a onclick="showSection('home')" id="nav-home" class="active">Beranda</a>
+    <a onclick="showSection('tentang')" id="nav-tentang">Tentang Saya</a>
+    <a onclick="showSection('produk')" id="nav-produk">Produk Saya</a>
+    <a onclick="showSection('kontak')" id="nav-kontak">Kontak Saya</a>
+    <a href="https://lynk.id/himarushopdigital" target="_blank" class="digital-link">Produk Digital 🚀</a>
+  </div>
+
+  <div class="container">
+    
+    <section id="home" class="active">
+      <div style="text-align: center; padding: 4rem 2rem; background: linear-gradient(135deg, #1f2937 0%, #111827 100%); color: white; border-radius: 12px; margin-bottom: 2rem; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.2);">
+        <h1 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; letter-spacing: -0.025em;">
+          Welcome to <span style="color: #10b981;">HimaruSetup</span>
+        </h1>
+        <p style="font-size: 1.1rem; color: #d1d5db; max-width: 600px; margin: 0 auto 2rem auto; line-height: 1.6;">
+          Eksplorasi dunia gaming, racikan PC dengan airflow maksimal, dan temukan rekomendasi perlengkapan setup terbaik yang selalu ter-update secara otomatis!
+        </p>
+       <button class="brutalist-btn" data-content="Lihat Katalog" onclick="showSection('produk')">
+  <span class="button_top"> Lihat Katalog Produk </span>
+</button>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem;">
+        <div style="background: white; border: 1px solid #e5e7eb; padding: 1.5rem; border-radius: 12px; text-align: center; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div style="font-size: 2.5rem; margin-bottom: 1rem;">🎮</div>
+            <h3 style="color: #1f2937; margin-bottom: 0.5rem; font-size: 1.2rem;">Gaming & Live</h3>
+            <p style="color: #6b7280; font-size: 0.95rem; line-height: 1.5; margin-bottom: 1rem;">Gameplay seru Free Fire Clash Squad dan interaksi real-time bareng komunitas di TikTok.</p>
+          </div>
+          <a href="https://whatsapp.com/channel/0029VbAYAYbK0IBfrCjc8j3U" target="_blank" style="display: block; background: #1f2937; color: white; text-decoration: none; padding: 0.5rem; border-radius: 6px; font-weight: bold; font-size: 0.9rem; transition: background 0.2s;">
+            Join Komunitas WA
+          </a>
+        </div>
+
+        <div style="background: white; border: 1px solid #e5e7eb; padding: 1.5rem; border-radius: 12px; text-align: center; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div style="font-size: 2.5rem; margin-bottom: 1rem;">🛒</div>
+            <h3 style="color: #1f2937; margin-bottom: 0.5rem; font-size: 1.2rem;">Rekomendasi Setup</h3>
+            <p style="color: #6b7280; font-size: 0.95rem; line-height: 1.5; margin-bottom: 1rem;">Kumpulan perlengkapan gaming, komponen PC, dan gadget pilihan yang terjamin kualitasnya.</p>
+          </div>
+          <a onclick="showSection('produk')" style="display: block; background: #1f2937; color: white; text-decoration: none; padding: 0.5rem; border-radius: 6px; font-weight: bold; font-size: 0.9rem; cursor: pointer; transition: background 0.2s;">
+            Lihat Produk Saya
+          </a>
+        </div>
+
+        <div style="background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%); border: 2px solid #10b981; padding: 1.5rem; border-radius: 12px; text-align: center; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.1); display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div style="font-size: 2.5rem; margin-bottom: 1rem;">⚡</div>
+            <h3 style="color: #111827; margin-bottom: 0.5rem; font-size: 1.2rem;">HimaruShop Official</h3>
+            <p style="color: #4b5563; font-size: 0.95rem; line-height: 1.5; margin-bottom: 1rem;">Top up game, lisensi, premium apps, dan produk digital pilihan lainnya dengan proses instan.</p>
+          </div>
+          <a href="https://lynk.id/himarushopofficial" target="_blank" style="display: block; background: #10b981; color: white; text-decoration: none; padding: 0.5rem; border-radius: 6px; font-weight: bold; font-size: 0.9rem; transition: background 0.2s;">
+            Buka Toko Digital
+          </a>
+        </div>
+      </div>
+      
+      <div class="testi-section">
+        <h2 class="testi-title">Apa Kata <span>Komunitas & Pembeli?</span></h2>
+        
+        <div class="testi-grid">
+          
+          <div class="testi-card">
+            <div class="testi-profile">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=60" alt="Avatar" class="testi-avatar">
+              <div class="testi-info">
+                <h4>Siti Rahma</h4>
+                <span>Penonton Live Streaming</span>
+              </div>
+            </div>
+            <div class="testi-stars">★★★★★ <span style="color:#4b5563; font-size:0.8rem; font-weight:bold;">5.0</span></div>
+            <p class="testi-comment">"Mantap banget, seru live streamingnya! Apalagi pas main mode Clash Squad, gameplay-nya GG parah tapi tetap diselingi candaan. Sukses terus Bang Himaru!"</p>
+          </div>
+
+          <div class="testi-card">
+            <div class="testi-profile">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=60" alt="Avatar" class="testi-avatar">
+              <div class="testi-info">
+                <h4>Rian Hidayat</h4>
+                <span>Anggota Komunitas WA</span>
+              </div>
+            </div>
+            <div class="testi-stars">★★★★★ <span style="color:#4b5563; font-size:0.8rem; font-weight:bold;">4.8</span></div>
+            <p class="testi-comment">"Makasi bang udah selalu bagi voucher dan dana kagetnya, gua seneng bang! Tiap live atau di grup WA selalu ada aja kejutan. Buat yang lain rugi banget sih kalau gak pantengin livenya. Sukses terus bang!"</p>
+          </div>
+
+          <div class="testi-card">
+            <div class="testi-profile">
+              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&auto=format&fit=crop&q=60" alt="Avatar" class="testi-avatar">
+              <div class="testi-info">
+                <h4>Budi Santoso</h4>
+                <span>Pelanggan Game</span>
+              </div>
+            </div>
+            <div class="testi-stars">★★★★★ <span style="color:#4b5563; font-size:0.8rem; font-weight:bold;">5.0</span></div>
+            <p class="testi-comment">"Bang mantep banget racikan set pc nya bikin bluestack engga nge frame dan main epep lancar headshot terus! Barang-barang rekomendasi yang ada di katalog sini juga keren-keren parah, bikin setup kamar makin estetik. Thank you bang!"</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="tentang">
+      <h2>Tentang HimaruSetup</h2>
+      <div style="margin-top: 1rem; color: #4b5563; line-height: 1.6;">
+        <p><strong>Halo! Selamat datang di website resmi HimaruSetup.</strong></p>
+        <br>
+        <p>Saya adalah seorang livestreamer game, pemain Free Fire yang berfokus pada mode Clash Squad, dan seorang TikTok Affiliate yang aktif membagikan konten seputar dunia gaming dan hiburan.</p>
+        <br>
+        <p>Gaya bermain saya yang santai namun tetap serius diharapkan bisa membuat penonton betah menikmati live hingga akhir sesi. Dalam bermain Free Fire, saya mengandalkan strategi matang dan akurasi tembakan yang konsisten untuk mendominasi pertempuran di mode Clash Squad.</p>
+        <br>
+        <p>Sesuai dengan nama <strong>HimaruSetup</strong>, selain aktif di <i>in-game</i>, saya juga sangat antusias dengan dunia <i>hardware</i> dan perakitan PC. Saya kerap membagikan konten tentang <i>setup gaming</i>, produktivitas, serta tips meracik komponen PC (seperti mengoptimalkan <i>airflow</i> dan sistem pendingin agar suhu PC tetap stabil dan adem).</p>
+        <br>
+        <p>Melalui akun TikTok <a href="https://tiktok.com/@himarusetup" target="_blank" style="color: #10b981; text-decoration: none; font-weight: bold;">@himarusetup</a>, saya rutin melakukan siaran langsung untuk berinteraksi secara <i>real-time</i> dengan para penonton, memamerkan <i>gameplay</i>, serta berbagi tips seputar game dan perangkat <i>gaming</i>.</p>
+        <br>
+        <p>Terima kasih sudah berkunjung ke katalog saya, dan sampai jumpa di sesi <i>live streaming</i> selanjutnya!</p>
+      </div>
+    </section>
+
+    <section id="produk">
+      <h2>Produk Saya</h2>
+      <p style="color: #6b7280; margin-bottom: 1.5rem;">Silakan pilih kategori produk di bawah ini:</p>
+      
+      <div class="categories" id="category-container"></div>
+      <div class="subcategories" id="subcategory-container"></div>
+      <div class="products-grid" id="products-container">
+        <p>Memuat produk...</p>
+      </div>
+    </section>
+
+    <section id="kontak">
+      <h2>Kontak & Komunitas</h2>
+      <p style="margin-top: 1rem; color: #4b5563;">Mari mabar, berdiskusi soal setup PC, atau sekadar ngobrol! Anda bisa menemukan dan menghubungi saya melalui platform di bawah ini:</p>
+      
+      <div style="margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.8rem;">
+        <a href="https://tiktok.com/@himarusetup" target="_blank" style="text-decoration: none; color: #1f2937; background: #f9fafb; padding: 0.75rem 1rem; border-radius: 8px; border: 1px solid #e5e7eb; transition: all 0.2s; font-weight: 500;">
+          📱 TikTok: <span style="color: #10b981;">@himarusetup</span>
+        </a>
+        <a href="https://t.me/himarusetup" target="_blank" style="text-decoration: none; color: #1f2937; background: #f9fafb; padding: 0.75rem 1rem; border-radius: 8px; border: 1px solid #e5e7eb; transition: all 0.2s; font-weight: 500;">
+          ✈️ Telegram: <span style="color: #10b981;">@himarusetup</span>
+        </a>
+        <a href="https://whatsapp.com/channel/0029VbAYAYbK0IBfrCjc8j3U" target="_blank" style="text-decoration: none; color: #1f2937; background: #f9fafb; padding: 0.75rem 1rem; border-radius: 8px; border: 1px solid #e5e7eb; transition: all 0.2s; font-weight: 500;">
+          💬 Saluran WhatsApp: <span style="color: #10b981;">Join Komunitas</span>
+        </a>
+        <a href="https://github.com/rikdevweb" target="_blank" style="text-decoration: none; color: #1f2937; background: #f9fafb; padding: 0.75rem 1rem; border-radius: 8px; border: 1px solid #e5e7eb; transition: all 0.2s; font-weight: 500;">
+          💻 GitHub: <span style="color: #10b981;">rikdevweb (ERIK)</span>
+        </a>
+        <div style="color: #1f2937; background: #f9fafb; padding: 0.75rem 1rem; border-radius: 8px; border: 1px solid #e5e7eb; font-weight: 500;">
+          🎧 Discord: <span style="color: #10b981;">himaruofficial</span>
+        </div>
+      </div>
+    </section>
+  </div>
+
+ <div id="stats-container" style="display: flex; gap: 20px; justify-content: center; margin: 20px 0;">
+  <div style="background: #f3f4f6; padding: 10px 20px; border-radius: 50px; font-weight: 600; font-size: 0.9rem; color: #374151; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+    📦 Total Produk: <span id="total-produk">0</span>
+  </div>
+  <div style="background: #f3f4f6; padding: 10px 20px; border-radius: 50px; font-weight: 600; font-size: 0.9rem; color: #374151; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+    ❤️ Total Like: <span id="total-likes">0</span>
+  </div>
+</div>
+
+  <footer>
+    <p>&copy; 2026 <span class="highlight">HimaruSetup</span>. All Rights Reserved.</p>
+    <p style="font-size: 0.8rem;">Built for Gamers, Powered by Affiliate 💚</p>
+  </footer>
+<script src="script.js"></script>
+</body>
+</html>
