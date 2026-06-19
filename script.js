@@ -221,6 +221,43 @@ function filterSubcategory(subcategory) {
   displayProducts(filtered);
 }
 
+// ==========================================
+// FUNGSI PENCARIAN PRODUK (LIVE SEARCH)
+// ==========================================
+function searchProducts() {
+  const searchInput = document.getElementById("search-input");
+  if (!searchInput) return; // Mencegah error jika elemen tidak ditemukan
+  
+  const keyword = searchInput.value.toLowerCase().trim();
+
+  // Jika kolom pencarian dikosongkan, kembalikan ke tampilan kategori terakhir
+  if (keyword === "") {
+    if (selectedSubcategory !== "Semua") {
+      filterSubcategory(selectedSubcategory);
+    } else {
+      filterCategory(selectedCategory);
+    }
+    return;
+  }
+
+  // Filter dari SEMUA produk
+  const filtered = allProducts.filter(p => {
+    const namaMatch = p.nama ? p.nama.toLowerCase().includes(keyword) : false;
+    const kategoriMatch = p.kategori ? p.kategori.toLowerCase().includes(keyword) : false;
+    const subkategoriMatch = p.subkategori ? p.subkategori.toLowerCase().includes(keyword) : false;
+    
+    return namaMatch || kategoriMatch || subkategoriMatch;
+  });
+
+  // Tampilkan hasil filter
+  displayProducts(filtered);
+
+  // Jika produk tidak ditemukan
+  const container = document.getElementById("products-container");
+  if (filtered.length === 0 && container) {
+    container.innerHTML = `<p style="text-align:center; color:#888; grid-column: 1/-1; padding: 2rem;">📦 Produk "<b>${searchInput.value}</b>" tidak ditemukan.</p>`;
+  }
+}
 // PERUBAHAN DI SINI: Langsung memanggil data dari API saat website dibuka
 window.onload = () => {
   loadProducts();
