@@ -91,6 +91,64 @@
     font-size: 1rem; /* Font lebih kecil di HP */
   }
 }
+
+/* Container Pencarian */
+.search-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px auto;
+  max-width: 400px;
+}
+
+/* Kolom Input */
+.custom-search-input {
+  width: 100%;
+  background-color: #e4e4e7; /* bg-zinc-200 */
+  color: #52525b; /* text-zinc-600 */
+  font-family: monospace; /* font-mono */
+  box-shadow: 0 0 0 1px #a1a1aa, 0 4px 6px -1px rgba(0, 0, 0, 0.1); /* ring-1 + shadow-md */
+  outline: none;
+  transition: all 0.3s ease;
+  border-radius: 9999px; /* rounded-full */
+  padding: 8px 16px; /* px-4 py-2 */
+  border: none;
+}
+
+.custom-search-input::placeholder {
+  color: #52525b;
+  opacity: 0.5;
+}
+
+/* Efek saat diklik (Focus) */
+.custom-search-input:focus {
+  box-shadow: 0 0 0 2px #fb7185, 0 10px 15px -3px rgba(251, 113, 133, 0.4); /* focus:ring-rose-400 + shadow-lg */
+}
+
+/* Ikon Pedang */
+.custom-search-icon {
+  background-color: #e4e4e7;
+  color: #52525b;
+  box-shadow: 0 0 0 1px #a1a1aa, 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border-radius: 9999px;
+  padding: 8px;
+  transform: rotate(45deg); /* rotate-[45deg] */
+  margin-left: 8px; /* ml-2 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Efek saat input diklik, ikon pedang juga ikut menyala */
+.custom-search-input:focus + .custom-search-icon {
+  box-shadow: 0 0 0 2px #fb7185, 0 10px 15px -3px rgba(251, 113, 133, 0.4);
+}
+
+.sword-icon {
+  width: 24px; /* w-6 */
+  height: 24px;
+}
     /* Navbar */
     header { 
       background-color: #1f2937; 
