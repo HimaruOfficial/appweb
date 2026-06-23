@@ -9,12 +9,12 @@
   <meta property="og:description" content="Temukan rekomendasi perlengkapan gaming, komponen PC dengan airflow maksimal, dan produk digital instan pilihan HimaruSetup!">
   <meta property="og:type" content="website">
 
-  <!-- Google Fonts: Plus Jakarta Sans (Sangat populer di UI/UX Figma) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Tailwind CSS -->
+  <link rel="stylesheet" href="style.css">
+
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -44,87 +44,14 @@
       }
     }
   </script>
-
-  <style>
-    /* Mesh Gradient Background */
-    body {
-      background-color: #f8fafc;
-      background-image: 
-        radial-gradient(at 0% 0%, rgba(16, 185, 129, 0.08) 0px, transparent 50%),
-        radial-gradient(at 100% 0%, rgba(59, 130, 246, 0.05) 0px, transparent 50%),
-        radial-gradient(at 50% 100%, rgba(16, 185, 129, 0.05) 0px, transparent 50%);
-      background-attachment: fixed;
-      overflow-x: hidden;
-      color: #1e293b;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    /* Hide scrollbar completely but keep functionality */
-    .no-scrollbar::-webkit-scrollbar { display: none; }
-    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-
-    /* Section Transition */
-    .section-content {
-      display: none;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .section-content.active {
-      display: block;
-      opacity: 1;
-      transform: translateY(0);
-      animation: springFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-
-    @keyframes springFade {
-      0% { opacity: 0; transform: translateY(20px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Floating Donasi Animation */
-    @keyframes float-soft {
-      0%, 100% { transform: translateY(0px) scale(1); }
-      50% { transform: translateY(-8px) scale(1.02); }
-    }
-    .floating-donasi {
-      animation: float-soft 4s ease-in-out infinite;
-    }
-
-    /* Glassmorphism utility */
-    .glass-pill {
-      background: rgba(255, 255, 255, 0.7);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.6);
-    }
-
-    .glass-card {
-      background: rgba(255, 255, 255, 0.6);
-      backdrop-filter: blur(40px);
-      -webkit-backdrop-filter: blur(40px);
-      border: 1px solid rgba(255, 255, 255, 1);
-    }
-
-    /* Button Micro-interactions */
-    .btn-spring {
-      transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-    .btn-spring:active {
-      transform: scale(0.95);
-    }
-  </style>
 </head>
 <body class="antialiased min-h-screen flex flex-col font-sans">
 
-  <!-- Custom Toast Notification -->
   <div id="toast" class="fixed bottom-8 left-1/2 -translate-x-1/2 bg-slate-900 text-white px-6 py-3 rounded-full font-medium shadow-2xl z-[100] opacity-0 pointer-events-none transition-all duration-300 transform translate-y-4 flex items-center gap-2">
     <svg class="w-5 h-5 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
     <span id="toast-msg">Notifikasi</span>
   </div>
 
-  <!-- Support Donasi Button (Floating) -->
   <a href="https://sociabuzz.com/himaruofficialgaming/tribe" target="_blank" class="floating-donasi fixed bottom-6 right-6 lg:bottom-10 lg:right-10 bg-gradient-to-tr from-amber-500 to-orange-400 text-white px-6 py-3.5 rounded-full font-bold shadow-float z-40 flex items-center gap-2 hover:shadow-orange-500/30 transition-all btn-spring border border-orange-300/30">
     <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
       <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
@@ -132,11 +59,9 @@
     Support Donasi
   </a>
 
-  <!-- Floating Header / Dock Nav (Figma Style) -->
   <div class="fixed top-4 md:top-6 left-0 w-full z-50 flex justify-center px-4 pointer-events-none">
     <nav class="pointer-events-auto glass-pill shadow-figma rounded-full px-4 py-2.5 flex items-center justify-between gap-6 md:gap-12 w-full max-w-4xl mx-auto">
       
-      <!-- Logo -->
       <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="flex items-center gap-1.5 font-extrabold text-xl tracking-tight text-slate-900 focus:outline-none pl-2 btn-spring">
         <div class="w-8 h-8 rounded-full bg-gradient-to-br from-brand-400 to-brand-600 flex items-center justify-center text-white shadow-md shadow-brand-500/20">
           H
@@ -144,7 +69,6 @@
         <span>Himaru<span class="text-brand-500">Setup</span></span>
       </button>
 
-      <!-- Desktop Menu -->
       <div class="hidden md:flex items-center bg-slate-100/50 rounded-full px-1 py-1">
         <button onclick="showSection('home')" id="nav-desktop-home" class="nav-link px-5 py-2 rounded-full text-sm font-semibold transition-all">Beranda</button>
         <button onclick="showSection('tentang')" id="nav-desktop-tentang" class="nav-link px-5 py-2 rounded-full text-sm font-semibold transition-all">Tentang</button>
@@ -152,13 +76,11 @@
         <button onclick="showSection('kontak')" id="nav-desktop-kontak" class="nav-link px-5 py-2 rounded-full text-sm font-semibold transition-all">Kontak</button>
       </div>
 
-      <!-- Action Button / Mobile Menu Toggle -->
       <div class="flex items-center gap-2">
         <a href="https://lynk.id/himarushopdigital" target="_blank" class="hidden md:flex bg-slate-900 text-white px-5 py-2.5 rounded-full text-sm font-bold hover:bg-slate-800 hover:shadow-lg hover:shadow-slate-900/20 transition-all btn-spring items-center gap-1.5">
           Toko Digital <span class="text-xs">🚀</span>
         </a>
         
-        <!-- Hamburger (Mobile) -->
         <button onclick="toggleMobileMenu()" class="md:hidden w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-700 hover:bg-slate-200 focus:outline-none btn-spring">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16"></path></svg>
         </button>
@@ -166,7 +88,6 @@
     </nav>
   </div>
 
-  <!-- Fullscreen Mobile Menu Overlay -->
   <div id="mobile-menu" class="fixed inset-0 bg-white/95 backdrop-blur-3xl z-[60] flex flex-col p-6 transition-all duration-500 opacity-0 pointer-events-none translate-y-4">
     <div class="flex justify-between items-center mb-12">
       <div class="font-extrabold text-xl tracking-tight text-slate-900">Menu Utama</div>
@@ -189,21 +110,14 @@
     </div>
   </div>
 
-  <!-- Spacer for Floating Nav -->
   <div class="h-28"></div>
 
-  <!-- Main Content -->
   <main class="flex-grow max-w-6xl mx-auto w-full px-4 sm:px-6 mb-20">
     
-    <!-- BERANDA -->
     <section id="home" class="section-content active">
-      
-      <!-- Figma Style Hero Section -->
       <div class="pt-10 pb-20 md:pt-16 md:pb-28 text-center max-w-4xl mx-auto relative flex flex-col items-center">
-        <!-- Glowing Orb Background -->
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[500px] md:h-[500px] bg-brand-500 rounded-full blur-[100px] md:blur-[140px] opacity-20 pointer-events-none -z-10"></div>
         
-        <!-- Status Pill -->
         <div class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/60 backdrop-blur-md border border-slate-200/60 shadow-sm text-slate-600 font-semibold text-sm mb-8 hover:shadow-md transition-all cursor-default">
           <span class="w-2.5 h-2.5 rounded-full bg-brand-500 animate-pulse"></span>
           HimaruSetup Web Catalog 2.0
@@ -228,10 +142,7 @@
         </div>
       </div>
 
-      <!-- Feature Auto-Layout Cards (Figma Style) -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-20">
-        
-        <!-- Card 1 -->
         <div class="glass-card rounded-[2rem] p-8 shadow-figma hover:shadow-figma-hover transition-all duration-300 flex flex-col h-full group relative overflow-hidden">
           <div class="absolute top-0 right-0 w-32 h-32 bg-blue-500/5 rounded-full blur-2xl -mr-10 -mt-10 transition-transform group-hover:scale-150"></div>
           <div class="w-14 h-14 bg-white shadow-sm border border-slate-100 text-blue-500 rounded-2xl flex items-center justify-center text-2xl mb-6 relative z-10">🎮</div>
@@ -242,7 +153,6 @@
           </a>
         </div>
 
-        <!-- Card 2 -->
         <div class="glass-card rounded-[2rem] p-8 shadow-figma hover:shadow-figma-hover transition-all duration-300 flex flex-col h-full group relative overflow-hidden ring-1 ring-brand-500/10">
           <div class="absolute top-0 right-0 w-32 h-32 bg-brand-500/5 rounded-full blur-2xl -mr-10 -mt-10 transition-transform group-hover:scale-150"></div>
           <div class="w-14 h-14 bg-brand-50 shadow-sm border border-brand-100 text-brand-500 rounded-2xl flex items-center justify-center text-2xl mb-6 relative z-10">🛒</div>
@@ -253,7 +163,6 @@
           </button>
         </div>
 
-        <!-- Card 3 -->
         <div class="bg-slate-900 text-white rounded-[2rem] p-8 shadow-figma hover:shadow-2xl hover:shadow-slate-900/20 transition-all duration-300 flex flex-col h-full group relative overflow-hidden">
           <div class="absolute inset-0 bg-gradient-to-br from-slate-800 to-slate-900 z-0"></div>
           <div class="absolute top-0 right-0 w-40 h-40 bg-brand-500/20 rounded-full blur-3xl -mr-10 -mt-10"></div>
@@ -266,20 +175,16 @@
           </a>
         </div>
       </div>
-
     </section>
 
-    <!-- TENTANG SAYA -->
     <section id="tentang" class="section-content">
       <div class="glass-card rounded-[2.5rem] p-8 md:p-14 shadow-figma max-w-4xl mx-auto border-t border-white">
         <div class="flex flex-col md:flex-row gap-10 items-center md:items-start">
           
-          <!-- Avatar/Icon Placeholder -->
           <div class="w-32 h-32 md:w-40 md:h-40 shrink-0 bg-gradient-to-br from-brand-100 to-brand-300 rounded-[2rem] flex items-center justify-center text-5xl shadow-inner border-4 border-white transform rotate-3">
             👋
           </div>
 
-          <!-- Content -->
           <div class="flex-1 text-center md:text-left">
             <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-6 tracking-tight">Tentang <span class="text-brand-500">Himaru</span></h2>
             
@@ -307,15 +212,12 @@
       </div>
     </section>
 
-    <!-- PRODUK / KATALOG -->
     <section id="produk" class="section-content">
-      
       <div class="text-center max-w-2xl mx-auto mb-10">
         <h2 class="text-4xl font-extrabold text-slate-900 mb-4 tracking-tight">Katalog Produk</h2>
         <p class="text-slate-500 text-lg font-medium">Temukan produk digital maupun fisik terbaik pilihan HimaruSetup yang diperbarui secara otomatis.</p>
       </div>
 
-      <!-- Search Bar (Figma Pill Style) -->
       <div class="max-w-xl mx-auto relative mb-12 group">
         <div class="absolute inset-y-0 left-2 pl-4 flex items-center pointer-events-none">
           <svg class="h-6 w-6 text-slate-400 group-focus-within:text-brand-500 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -332,35 +234,26 @@
         >
       </div>
 
-      <!-- Categories Container (Pill Tags) -->
       <div class="mb-6">
         <div class="flex items-center gap-3 overflow-x-auto no-scrollbar pb-4 snap-x" id="category-container">
-          <!-- Rendered by JS -->
-        </div>
+          </div>
       </div>
 
-      <!-- Subcategories Container -->
       <div class="mb-10 hidden" id="subcategory-container">
         <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-2" id="subcategory-wrapper">
-            <!-- Rendered by JS -->
-        </div>
+            </div>
       </div>
 
-      <!-- Products Grid -->
       <div id="products-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
-        <!-- Loading State -->
         <div class="col-span-full py-20 flex flex-col items-center justify-center">
           <div class="loader mb-4"></div>
           <p class="text-slate-500 font-medium text-lg">Sinkronisasi database...</p>
         </div>
       </div>
-
     </section>
 
-    <!-- KONTAK -->
     <section id="kontak" class="section-content">
       <div class="glass-card rounded-[2.5rem] p-8 md:p-14 shadow-figma max-w-3xl mx-auto text-center border-t border-white">
-        
         <div class="w-20 h-20 bg-slate-100 text-slate-700 rounded-3xl flex items-center justify-center text-4xl mx-auto mb-6 shadow-sm border border-slate-200 transform -rotate-3">
           🤝
         </div>
@@ -369,7 +262,6 @@
         <p class="text-slate-500 mb-10 leading-relaxed font-medium text-lg">Punya pertanyaan soal rakitan PC atau ingin mabar? Hubungi saya melalui platform di bawah ini.</p>
         
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-left">
-          <!-- Contact Cards -->
           <a href="https://tiktok.com/@himarusetup" target="_blank" class="flex items-center gap-4 p-5 rounded-2xl bg-white border border-slate-200/60 hover:border-brand-300 hover:shadow-md transition-all btn-spring group">
             <div class="w-12 h-12 rounded-xl bg-slate-50 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">📱</div>
             <div>
@@ -406,7 +298,6 @@
       </div>
     </section>
 
-    <!-- Global Stats -->
     <div id="stats-container" class="mt-16 flex flex-wrap gap-4 justify-center">
       <div class="glass-pill px-6 py-3 rounded-full shadow-sm flex items-center gap-3">
         <span class="text-xl">📦</span>
@@ -419,282 +310,13 @@
         <span id="total-likes" class="text-brand-500 font-extrabold text-xl">0</span>
       </div>
     </div>
-
   </main>
 
-  <!-- Footer -->
   <footer class="mt-auto py-10 text-center border-t border-slate-200/50">
     <p class="font-bold text-slate-600 mb-1">&copy; 2026 <span class="text-slate-900">HimaruSetup</span>.</p>
     <p class="text-sm text-slate-400 font-medium">Built with precision for gamers 💚</p>
   </footer>
 
-  <!-- JAVASCRIPT -->
-  <script>
-    let allProducts = [];
-    let selectedCategory = "Semua";
-    let selectedSubcategory = "Semua";
-
-    const API_URL = "https://script.google.com/macros/s/AKfycbxoMJM3jTKO_ro-1YO9ekSye_Kvpi0TFibdcdjO0cIkUiG7J7IlO5sKzA0BTCGYiKH2/exec?api=true";
-
-    // Toast Notification System
-    function showToast(message) {
-      const toast = document.getElementById('toast');
-      const toastMsg = document.getElementById('toast-msg');
-      toastMsg.innerText = message;
-      
-      // Show
-      toast.classList.remove('opacity-0', 'translate-y-4');
-      toast.classList.add('opacity-100', 'translate-y-0');
-      
-      // Hide after 3s
-      setTimeout(() => {
-        toast.classList.remove('opacity-100', 'translate-y-0');
-        toast.classList.add('opacity-0', 'translate-y-4');
-      }, 3000);
-    }
-
-    // Custom Copy Function without Alert
-    function copyToClipboard(text) {
-      navigator.clipboard.writeText(text).then(() => {
-        showToast("Link produk berhasil disalin!");
-      }).catch(err => {
-        console.error('Gagal menyalin: ', err);
-        showToast("Gagal menyalin link.");
-      });
-    }
-
-    // Navigation & Section Management
-    function toggleMobileMenu() {
-      const menu = document.getElementById('mobile-menu');
-      if (menu.classList.contains('opacity-0')) {
-        // Open
-        menu.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4');
-        menu.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0');
-      } else {
-        // Close
-        menu.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4');
-        menu.classList.remove('opacity-100', 'pointer-events-auto', 'translate-y-0');
-      }
-    }
-
-    function showSection(sectionId) {
-      document.querySelectorAll('.section-content').forEach(sec => sec.classList.remove('active'));
-      
-      // Reset desktop nav buttons
-      document.querySelectorAll('.nav-link').forEach(link => {
-        link.classList.remove('bg-white', 'text-slate-900', 'shadow-sm');
-        link.classList.add('text-slate-500', 'hover:text-slate-800');
-      });
-      
-      // Activate section
-      document.getElementById(sectionId).classList.add('active');
-      
-      // Activate desktop link styling
-      const desktopNav = document.getElementById('nav-desktop-' + sectionId);
-      if(desktopNav) {
-        desktopNav.classList.remove('text-slate-500', 'hover:text-slate-800');
-        desktopNav.classList.add('bg-white', 'text-slate-900', 'shadow-sm');
-      }
-
-      window.scrollTo({top: 0, behavior: 'smooth'});
-    }
-
-    // Map Category logic (Simplified Icons for cleanliness)
-    function getHeroIcon(name) {
-       return `<svg class="w-4 h-4 opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" /></svg>`;
-    }
-
-    async function loadProducts() {
-      const container = document.getElementById('products-container');
-      try {
-        const response = await fetch(API_URL);
-        if (!response.ok) throw new Error("Connection failed");
-        const data = await response.json();
-        allProducts = data;
-        displayProducts(data);
-        generateCategoryButtons();
-        updateDashboard(data);
-      } catch (error) {
-        console.error("Load failed:", error);
-        container.innerHTML = `<div class="col-span-full py-10 text-center text-red-500 font-medium bg-red-50 rounded-2xl border border-red-100">Gagal memuat produk. Cek koneksi Anda.</div>`;
-      }
-    }
-
-    function updateDashboard(products) {
-      if (!products || products.length === 0) return;
-      const totalLikes = products.reduce((sum, p) => sum + (parseInt(p.likes) || 0), 0);
-      document.getElementById('total-produk').innerText = products.length;
-      document.getElementById('total-likes').innerText = totalLikes.toLocaleString('id-ID'); 
-    }
-
-    // Figma Style Product Cards
-    function displayProducts(products) {
-      const container = document.getElementById('products-container');
-      if (products.length === 0) {
-        container.innerHTML = `<div class="col-span-full py-20 text-center text-slate-400 bg-white/50 backdrop-blur-sm rounded-3xl border border-dashed border-slate-300 font-medium text-lg">Katalog kosong atau tidak ditemukan.</div>`;
-        return;
-      }
-
-      container.innerHTML = products.map((p) => `
-        <div class="bg-white rounded-[1.5rem] p-5 shadow-figma hover:shadow-figma-hover transition-all duration-300 flex flex-col group relative border border-slate-100/80">
-          
-          <!-- Top Area (Tags) -->
-          <div class="flex flex-wrap gap-2 mb-4">
-            <span class="text-[11px] font-extrabold uppercase tracking-wider text-brand-600 bg-brand-50 px-2.5 py-1 rounded-full">${p.kategori || 'Produk'}</span>
-            ${p.subkategori ? `<span class="text-[11px] font-bold uppercase tracking-wider text-slate-500 bg-slate-100 px-2.5 py-1 rounded-full">${p.subkategori}</span>` : ''}
-          </div>
-          
-          <!-- Title -->
-          <h3 class="font-extrabold text-slate-900 text-lg leading-snug mb-6 group-hover:text-brand-500 transition-colors line-clamp-2">${p.nama}</h3>
-
-          <!-- Bottom Area (Actions) -->
-          <div class="mt-auto pt-4 border-t border-slate-100 flex flex-col gap-4">
-            
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-1.5 bg-slate-50 px-3 py-1.5 rounded-full border border-slate-100">
-                <button onclick="likeProduct(this, '${p.nama}')" class="text-slate-400 hover:text-red-500 transition-colors focus:outline-none btn-spring">
-                  <svg class="w-5 h-5 like-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
-                </button>
-                <span class="text-xs text-slate-600 font-bold like-count">${p.likes || 0}</span>
-              </div>
-              
-              <button onclick="copyToClipboard('${p.link}')" class="text-slate-400 hover:text-slate-900 hover:bg-slate-100 p-2 rounded-full transition-colors btn-spring" title="Salin Link">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
-              </button>
-            </div>
-
-            <button onclick="window.open('${p.link}', '_blank')" class="w-full bg-slate-900 text-white text-sm font-bold py-3 rounded-xl hover:bg-brand-500 transition-colors flex items-center justify-center gap-2 btn-spring">
-              Beli Sekarang <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-            </button>
-          </div>
-        </div>
-      `).join('');
-    }
-
-    async function likeProduct(btn, namaProduk) {
-      const svgIcon = btn.querySelector('.like-icon');
-      const span = btn.nextElementSibling;
-      let count = parseInt(span.innerText);
-      const isLiked = svgIcon.classList.contains('fill-red-500');
-
-      if (!isLiked) {
-        count++;
-        svgIcon.classList.add('fill-red-500', 'text-red-500');
-        svgIcon.classList.remove('text-slate-400');
-      } else {
-        count--;
-        svgIcon.classList.remove('fill-red-500', 'text-red-500');
-        svgIcon.classList.add('text-slate-400');
-      }
-      span.innerText = count;
-
-      const likesEl = document.getElementById('total-likes');
-      let currentTotal = parseInt(likesEl.innerText.replace(/\./g, '')) || 0;
-      likesEl.innerText = (!isLiked ? currentTotal + 1 : currentTotal - 1).toLocaleString('id-ID');
-
-      try {
-        await fetch(API_URL, {
-          method: "POST",
-          body: JSON.stringify({ action: "addLike", nama: namaProduk, type: !isLiked ? 'add' : 'remove' })
-        });
-      } catch (error) { console.error(error); }
-    }
-
-    // Pill Style Categories
-    function generateCategoryButtons() {
-      const catContainer = document.getElementById('category-container');
-      const categories = ['Semua', ...new Set(allProducts.map(p => p.kategori).filter(Boolean))];
-      
-      catContainer.innerHTML = categories.map(cat => {
-        const isActive = cat === 'Semua';
-        const activeClass = isActive ? 'bg-slate-900 text-white shadow-md' : 'bg-white text-slate-600 border-slate-200 hover:border-brand-300 hover:text-brand-600';
-        return `
-          <button onclick="filterCategory('${cat}')" id="btn-cat-${cat.replace(/\s+/g, '')}" class="cat-btn snap-start whitespace-nowrap px-6 py-3 rounded-full border font-bold text-sm transition-all btn-spring ${activeClass}">
-            ${cat}
-          </button>
-        `;
-      }).join('');
-    }
-
-    function filterCategory(category) {
-      selectedCategory = category;
-      selectedSubcategory = "Semua";
-      document.getElementById('search-input').value = ""; 
-
-      document.querySelectorAll('.cat-btn').forEach(btn => {
-        btn.classList.remove('bg-slate-900', 'text-white', 'shadow-md');
-        btn.classList.add('bg-white', 'text-slate-600', 'border-slate-200');
-      });
-      const activeBtn = document.getElementById('btn-cat-' + category.replace(/\s+/g, ''));
-      activeBtn.classList.add('bg-slate-900', 'text-white', 'shadow-md');
-      activeBtn.classList.remove('bg-white', 'text-slate-600', 'border-slate-200');
-
-      const subContainer = document.getElementById('subcategory-container');
-      const subWrapper = document.getElementById('subcategory-wrapper');
-
-      if (category === 'Semua') {
-        subContainer.classList.add('hidden');
-        displayProducts(allProducts);
-      } else {
-        const filtered = allProducts.filter(p => p.kategori === category);
-        const subcats = [...new Set(filtered.map(p => p.subkategori).filter(Boolean))];
-
-        if (subcats.length > 0) {
-          subContainer.classList.remove('hidden');
-          subWrapper.innerHTML = `
-            <button onclick="filterSubcategory('Semua')" id="btn-sub-Semua" class="sub-cat-btn px-5 py-2 rounded-full text-xs font-bold transition-all bg-brand-100 text-brand-700 btn-spring">
-              Semua ${category}
-            </button>
-          ` + subcats.map(sub => `
-            <button onclick="filterSubcategory('${sub}')" id="btn-sub-${sub.replace(/\s+/g, '')}" class="sub-cat-btn px-5 py-2 rounded-full text-xs font-bold transition-all bg-white border border-slate-200 text-slate-500 hover:bg-slate-50 btn-spring">
-              ${sub}
-            </button>
-          `).join('');
-        } else {
-          subContainer.classList.add('hidden');
-        }
-        displayProducts(filtered);
-      }
-    }
-
-    function filterSubcategory(subcategory) {
-      selectedSubcategory = subcategory;
-
-      document.querySelectorAll('.sub-cat-btn').forEach(btn => {
-        btn.classList.remove('bg-brand-100', 'text-brand-700');
-        btn.classList.add('bg-white', 'border-slate-200', 'text-slate-500');
-      });
-      const activeBtn = document.getElementById('btn-sub-' + subcategory.replace(/\s+/g, ''));
-      activeBtn.classList.add('bg-brand-100', 'text-brand-700');
-      activeBtn.classList.remove('bg-white', 'border-slate-200', 'text-slate-500');
-
-      let filtered = allProducts.filter(p => p.kategori === selectedCategory);
-      if (subcategory !== 'Semua') filtered = filtered.filter(p => p.subkategori === subcategory);
-      displayProducts(filtered);
-    }
-
-    function searchProducts() {
-      const kw = document.getElementById("search-input").value.toLowerCase().trim();
-      if (kw === "") {
-        if (selectedSubcategory !== "Semua") filterSubcategory(selectedSubcategory);
-        else filterCategory(selectedCategory);
-        return;
-      }
-      const filtered = allProducts.filter(p => 
-        (p.nama && p.nama.toLowerCase().includes(kw)) || 
-        (p.kategori && p.kategori.toLowerCase().includes(kw)) || 
-        (p.subkategori && p.subkategori.toLowerCase().includes(kw))
-      );
-      displayProducts(filtered);
-    }
-
-    window.addEventListener('DOMContentLoaded', () => {
-      // Set Init state
-      const homeLink = document.getElementById('nav-desktop-home');
-      homeLink.classList.remove('text-slate-500', 'hover:text-slate-800');
-      homeLink.classList.add('bg-white', 'text-slate-900', 'shadow-sm');
-      loadProducts();
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
