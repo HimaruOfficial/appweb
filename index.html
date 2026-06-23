@@ -3,262 +3,357 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>HimaruSetup - Katalog & Shop</title>
+  <title>HimaruSetup - Katalog & Shop</title>
+  <link rel="stylesheet" href="styles.css">
 
   <meta property="og:title" content="HimaruSetup - Katalog & Rekomendasi Setup PC">
   <meta property="og:description" content="Temukan rekomendasi perlengkapan gaming, komponen PC dengan airflow maksimal, dan produk digital instan pilihan HimaruSetup!">
-  <meta property="og:image" content="https://himarusetupshop.vercel.app/banner.jpg">
-  <meta property="og:url" content="https://himarusetupshop.vercel.app/">
   <meta property="og:type" content="website">
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
 
-  <a href="https://sociabuzz.com/himaruofficialgaming/tribe" target="_blank" class="floating-donasi">
-    <svg style="width:20px;height:20px;fill:currentColor;" viewBox="0 0 24 24">
+  <!-- Google Fonts: Plus Jakarta Sans (Sangat populer di UI/UX Figma) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#ecfdf5',
+              100: '#d1fae5',
+              400: '#34d399',
+              500: '#10b981',
+              600: '#059669',
+              900: '#064e3b',
+            },
+            surface: '#f9fafb',
+            surface_dark: '#111827',
+          },
+          boxShadow: {
+            'figma': '0 4px 24px -6px rgba(0, 0, 0, 0.04), 0 0 1px rgba(0,0,0,0.1)',
+            'figma-hover': '0 20px 40px -10px rgba(0, 0, 0, 0.08), 0 0 1px rgba(0,0,0,0.1)',
+            'float': '0 20px 40px -10px rgba(16, 185, 129, 0.3)',
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="antialiased min-h-screen flex flex-col font-sans">
+
+  <!-- Custom Toast Notification -->
+  <div id="toast" class="fixed bottom-8 left-1/2 -translate-x-1/2 bg-slate-900 text-white px-6 py-3 rounded-full font-medium shadow-2xl z-[100] opacity-0 pointer-events-none transition-all duration-300 transform translate-y-4 flex items-center gap-2">
+    <svg class="w-5 h-5 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+    <span id="toast-msg">Notifikasi</span>
+  </div>
+
+  <!-- Support Donasi Button (Floating) -->
+  <a href="https://sociabuzz.com/himaruofficialgaming/tribe" target="_blank" class="floating-donasi fixed bottom-6 right-6 lg:bottom-10 lg:right-10 bg-gradient-to-tr from-amber-500 to-orange-400 text-white px-6 py-3.5 rounded-full font-bold shadow-float z-40 flex items-center gap-2 hover:shadow-orange-500/30 transition-all btn-spring border border-orange-300/30">
+    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
       <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
     </svg>
     Support Donasi
   </a>
 
-  <div class="menu-overlay" id="menu-overlay" onclick="toggleMenu()"></div>
-
-  <header>
-  <nav>
-    <!-- Logo dengan efek animasi Back to Top -->
-    <button class="logo-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-      <div class="text">
-        <span>Himaru</span>
-        <span>Setup</span>
-      </div>
-      <div class="clone">
-        <span>Follow</span>
-        <span>Me</span>
-      </div>
-      <svg stroke-width="2" stroke="currentColor" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="20px">
-        <path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linejoin="round" stroke-linecap="round"></path>
-      </svg>
-    </button>
+  <!-- Floating Header / Dock Nav (Figma Style) -->
+  <div class="fixed top-4 md:top-6 left-0 w-full z-50 flex justify-center px-4 pointer-events-none">
+    <nav class="pointer-events-auto glass-pill shadow-figma rounded-full px-4 py-2.5 flex items-center justify-between gap-6 md:gap-12 w-full max-w-4xl mx-auto">
       
-      <button class="btn-uiverse" onclick="toggleMenu()">
-        <span class="icon">
-          <svg viewBox="0 0 175 80" width="25" height="25">
-            <rect width="80" height="15" fill="#f0f0f0" rx="10"></rect>
-            <rect y="30" width="80" height="15" fill="#f0f0f0" rx="10"></rect>
-            <rect y="60" width="80" height="15" fill="#f0f0f0" rx="10"></rect>
-          </svg>
-        </span>
-        <span class="text">MENU</span>
+      <!-- Logo -->
+      <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="flex items-center gap-1.5 font-extrabold text-xl tracking-tight text-slate-900 focus:outline-none pl-2 btn-spring">
+        <div class="w-8 h-8 rounded-full bg-gradient-to-br from-brand-400 to-brand-600 flex items-center justify-center text-white shadow-md shadow-brand-500/20">
+          H
+        </div>
+        <span>Himaru<span class="text-brand-500">Setup</span></span>
       </button>
 
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex items-center bg-slate-100/50 rounded-full px-1 py-1">
+        <button onclick="showSection('home')" id="nav-desktop-home" class="nav-link px-5 py-2 rounded-full text-sm font-semibold transition-all">Beranda</button>
+        <button onclick="showSection('tentang')" id="nav-desktop-tentang" class="nav-link px-5 py-2 rounded-full text-sm font-semibold transition-all">Tentang</button>
+        <button onclick="showSection('produk')" id="nav-desktop-produk" class="nav-link px-5 py-2 rounded-full text-sm font-semibold transition-all">Katalog</button>
+        <button onclick="showSection('kontak')" id="nav-desktop-kontak" class="nav-link px-5 py-2 rounded-full text-sm font-semibold transition-all">Kontak</button>
+      </div>
+
+      <!-- Action Button / Mobile Menu Toggle -->
+      <div class="flex items-center gap-2">
+        <a href="https://lynk.id/himarushopdigital" target="_blank" class="hidden md:flex bg-slate-900 text-white px-5 py-2.5 rounded-full text-sm font-bold hover:bg-slate-800 hover:shadow-lg hover:shadow-slate-900/20 transition-all btn-spring items-center gap-1.5">
+          Toko Digital <span class="text-xs">🚀</span>
+        </a>
+        
+        <!-- Hamburger (Mobile) -->
+        <button onclick="toggleMobileMenu()" class="md:hidden w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-700 hover:bg-slate-200 focus:outline-none btn-spring">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
+      </div>
     </nav>
-  </header>
-
-
-
-  <div class="sidebar" id="sidebar">
-    <a onclick="showSection('home')" id="nav-home" class="active">Beranda</a>
-    <a onclick="showSection('tentang')" id="nav-tentang">Tentang Saya</a>
-    <a onclick="showSection('produk')" id="nav-produk">Produk Saya</a>
-    <a onclick="showSection('kontak')" id="nav-kontak">Kontak Saya</a>
-    <a href="https://lynk.id/himarushopdigital" target="_blank" class="digital-link">Produk Digital 🚀</a>
   </div>
 
-  <div class="container">
+  <!-- Fullscreen Mobile Menu Overlay -->
+  <div id="mobile-menu" class="fixed inset-0 bg-white/95 backdrop-blur-3xl z-[60] flex flex-col p-6 transition-all duration-500 opacity-0 pointer-events-none translate-y-4">
+    <div class="flex justify-between items-center mb-12">
+      <div class="font-extrabold text-xl tracking-tight text-slate-900">Menu Utama</div>
+      <button onclick="toggleMobileMenu()" class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-700 btn-spring">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg>
+      </button>
+    </div>
     
-    <section id="home" class="active">
-      <div style="text-align: center; padding: 4rem 2rem; background: linear-gradient(135deg, #1f2937 0%, #111827 100%); color: white; border-radius: 12px; margin-bottom: 2rem; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.2);">
-        <h1 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; letter-spacing: -0.025em;">
-          Welcome to <span style="color: #10b981;">HimaruSetup</span>
-        </h1>
-        <p style="font-size: 1.1rem; color: #d1d5db; max-width: 600px; margin: 0 auto 2rem auto; line-height: 1.6;">
-          Eksplorasi dunia gaming, racikan PC dengan airflow maksimal, dan temukan rekomendasi perlengkapan setup terbaik yang selalu ter-update secara otomatis!
-        </p>
-       <button class="brutalist-btn" data-content="Lihat Katalog" onclick="showSection('produk')">
-  <span class="button_top"> Lihat Katalog Produk </span>
-</button>
-      </div>
+    <div class="flex flex-col gap-4 text-2xl font-bold text-slate-400">
+      <button onclick="showSection('home'); toggleMobileMenu()" id="nav-mobile-home" class="mobile-nav-link text-left hover:text-slate-900 transition-colors py-2">Beranda</button>
+      <button onclick="showSection('tentang'); toggleMobileMenu()" id="nav-mobile-tentang" class="mobile-nav-link text-left hover:text-slate-900 transition-colors py-2">Tentang Saya</button>
+      <button onclick="showSection('produk'); toggleMobileMenu()" id="nav-mobile-produk" class="mobile-nav-link text-left hover:text-slate-900 transition-colors py-2">Katalog Produk</button>
+      <button onclick="showSection('kontak'); toggleMobileMenu()" id="nav-mobile-kontak" class="mobile-nav-link text-left hover:text-slate-900 transition-colors py-2">Kontak</button>
+    </div>
 
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem;">
-        <div style="background: white; border: 1px solid #e5e7eb; padding: 1.5rem; border-radius: 12px; text-align: center; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); display: flex; flex-direction: column; justify-content: space-between;">
-          <div>
-            <div style="font-size: 2.5rem; margin-bottom: 1rem;">🎮</div>
-            <h3 style="color: #1f2937; margin-bottom: 0.5rem; font-size: 1.2rem;">Gaming & Live</h3>
-            <p style="color: #6b7280; font-size: 0.95rem; line-height: 1.5; margin-bottom: 1rem;">Gameplay seru Free Fire Clash Squad dan interaksi real-time bareng komunitas di TikTok.</p>
-          </div>
-          <a href="https://whatsapp.com/channel/0029VbAYAYbK0IBfrCjc8j3U" target="_blank" style="display: block; background: #1f2937; color: white; text-decoration: none; padding: 0.5rem; border-radius: 6px; font-weight: bold; font-size: 0.9rem; transition: background 0.2s;">
-            Join Komunitas WA
-          </a>
-        </div>
+    <div class="mt-auto pb-8">
+      <a href="https://lynk.id/himarushopdigital" target="_blank" class="flex justify-center w-full bg-slate-900 text-white px-6 py-4 rounded-2xl text-lg font-bold shadow-xl shadow-slate-900/20 btn-spring">
+        Buka Toko Digital 🚀
+      </a>
+    </div>
+  </div>
 
-        <div style="background: white; border: 1px solid #e5e7eb; padding: 1.5rem; border-radius: 12px; text-align: center; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); display: flex; flex-direction: column; justify-content: space-between;">
-          <div>
-            <div style="font-size: 2.5rem; margin-bottom: 1rem;">🛒</div>
-            <h3 style="color: #1f2937; margin-bottom: 0.5rem; font-size: 1.2rem;">Rekomendasi Setup</h3>
-            <p style="color: #6b7280; font-size: 0.95rem; line-height: 1.5; margin-bottom: 1rem;">Kumpulan perlengkapan gaming, komponen PC, dan gadget pilihan yang terjamin kualitasnya.</p>
-          </div>
-          <a onclick="showSection('produk')" style="display: block; background: #1f2937; color: white; text-decoration: none; padding: 0.5rem; border-radius: 6px; font-weight: bold; font-size: 0.9rem; cursor: pointer; transition: background 0.2s;">
-            Lihat Produk Saya
-          </a>
-        </div>
+  <!-- Spacer for Floating Nav -->
+  <div class="h-28"></div>
 
-        <div style="background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%); border: 2px solid #10b981; padding: 1.5rem; border-radius: 12px; text-align: center; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.1); display: flex; flex-direction: column; justify-content: space-between;">
-          <div>
-            <div style="font-size: 2.5rem; margin-bottom: 1rem;">⚡</div>
-            <h3 style="color: #111827; margin-bottom: 0.5rem; font-size: 1.2rem;">HimaruShop Official</h3>
-            <p style="color: #4b5563; font-size: 0.95rem; line-height: 1.5; margin-bottom: 1rem;">Top up game, lisensi, premium apps, dan produk digital pilihan lainnya dengan proses instan.</p>
-          </div>
-          <a href="https://lynk.id/himarushopofficial" target="_blank" style="display: block; background: #10b981; color: white; text-decoration: none; padding: 0.5rem; border-radius: 6px; font-weight: bold; font-size: 0.9rem; transition: background 0.2s;">
-            Buka Toko Digital
-          </a>
-        </div>
-      </div>
+  <!-- Main Content -->
+  <main class="flex-grow max-w-6xl mx-auto w-full px-4 sm:px-6 mb-20">
+    
+    <!-- BERANDA -->
+    <section id="home" class="section-content active">
       
-      <div class="testi-section">
-        <h2 class="testi-title">Apa Kata <span>Komunitas & Pembeli?</span></h2>
+      <!-- Figma Style Hero Section -->
+      <div class="pt-10 pb-20 md:pt-16 md:pb-28 text-center max-w-4xl mx-auto relative flex flex-col items-center">
+        <!-- Glowing Orb Background -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[500px] md:h-[500px] bg-brand-500 rounded-full blur-[100px] md:blur-[140px] opacity-20 pointer-events-none -z-10"></div>
         
-        <div class="testi-grid">
+        <!-- Status Pill -->
+        <div class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/60 backdrop-blur-md border border-slate-200/60 shadow-sm text-slate-600 font-semibold text-sm mb-8 hover:shadow-md transition-all cursor-default">
+          <span class="w-2.5 h-2.5 rounded-full bg-brand-500 animate-pulse"></span>
+          HimaruSetup Web Catalog 2.0
+        </div>
+
+        <h1 class="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter text-slate-900 mb-6 leading-[1.05]">
+          Elevate Your <br />
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-500 to-teal-400">Gaming Space.</span>
+        </h1>
+        
+        <p class="text-lg md:text-xl text-slate-500 max-w-2xl mx-auto mb-10 leading-relaxed font-medium">
+          Temukan perlengkapan setup pilihan, racikan PC dengan airflow maksimal, dan produk digital instan yang terkurasi otomatis.
+        </p>
+        
+        <div class="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
+          <button onclick="showSection('produk')" class="w-full sm:w-auto bg-slate-900 text-white font-bold py-4 px-10 rounded-full transition-all shadow-xl shadow-slate-900/20 hover:shadow-2xl hover:-translate-y-1 btn-spring text-lg">
+            Eksplor Katalog
+          </button>
+          <a href="https://whatsapp.com/channel/0029VbAYAYbK0IBfrCjc8j3U" target="_blank" class="w-full sm:w-auto bg-white text-slate-800 border border-slate-200 font-bold py-4 px-10 rounded-full transition-all shadow-sm hover:shadow-md hover:border-slate-300 hover:bg-slate-50 btn-spring text-lg flex items-center justify-center gap-2">
+            Join Komunitas
+          </a>
+        </div>
+      </div>
+
+      <!-- Feature Auto-Layout Cards (Figma Style) -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-20">
+        
+        <!-- Card 1 -->
+        <div class="glass-card rounded-[2rem] p-8 shadow-figma hover:shadow-figma-hover transition-all duration-300 flex flex-col h-full group relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-blue-500/5 rounded-full blur-2xl -mr-10 -mt-10 transition-transform group-hover:scale-150"></div>
+          <div class="w-14 h-14 bg-white shadow-sm border border-slate-100 text-blue-500 rounded-2xl flex items-center justify-center text-2xl mb-6 relative z-10">🎮</div>
+          <h3 class="text-2xl font-bold text-slate-900 mb-3 relative z-10 tracking-tight">Gaming & Live</h3>
+          <p class="text-slate-500 mb-8 leading-relaxed font-medium relative z-10 flex-grow">Gameplay seru Free Fire Clash Squad dan interaksi real-time bareng komunitas di platform TikTok.</p>
+          <a href="https://tiktok.com/@himarusetup" target="_blank" class="mt-auto inline-flex items-center text-sm font-bold text-blue-600 hover:text-blue-700 relative z-10">
+            Tonton Live Sekarang <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          </a>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="glass-card rounded-[2rem] p-8 shadow-figma hover:shadow-figma-hover transition-all duration-300 flex flex-col h-full group relative overflow-hidden ring-1 ring-brand-500/10">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-brand-500/5 rounded-full blur-2xl -mr-10 -mt-10 transition-transform group-hover:scale-150"></div>
+          <div class="w-14 h-14 bg-brand-50 shadow-sm border border-brand-100 text-brand-500 rounded-2xl flex items-center justify-center text-2xl mb-6 relative z-10">🛒</div>
+          <h3 class="text-2xl font-bold text-slate-900 mb-3 relative z-10 tracking-tight">Setup Picks</h3>
+          <p class="text-slate-500 mb-8 leading-relaxed font-medium relative z-10 flex-grow">Kumpulan perlengkapan gaming, komponen PC, dan gadget pilihan terbaik yang terjamin kualitasnya.</p>
+          <button onclick="showSection('produk')" class="mt-auto text-left inline-flex items-center text-sm font-bold text-brand-600 hover:text-brand-700 relative z-10">
+            Buka Katalog <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          </button>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="bg-slate-900 text-white rounded-[2rem] p-8 shadow-figma hover:shadow-2xl hover:shadow-slate-900/20 transition-all duration-300 flex flex-col h-full group relative overflow-hidden">
+          <div class="absolute inset-0 bg-gradient-to-br from-slate-800 to-slate-900 z-0"></div>
+          <div class="absolute top-0 right-0 w-40 h-40 bg-brand-500/20 rounded-full blur-3xl -mr-10 -mt-10"></div>
           
-          <div class="testi-card">
-            <div class="testi-profile">
-              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=60" alt="Avatar" class="testi-avatar">
-              <div class="testi-info">
-                <h4>Siti Rahma</h4>
-                <span>Penonton Live Streaming</span>
-              </div>
-            </div>
-            <div class="testi-stars">★★★★★ <span style="color:#4b5563; font-size:0.8rem; font-weight:bold;">5.0</span></div>
-            <p class="testi-comment">"Mantap banget, seru live streamingnya! Apalagi pas main mode Clash Squad, gameplay-nya GG parah tapi tetap diselingi candaan. Sukses terus Bang Himaru!"</p>
+          <div class="w-14 h-14 bg-white/10 backdrop-blur-md border border-white/10 text-brand-400 rounded-2xl flex items-center justify-center text-2xl mb-6 relative z-10">⚡</div>
+          <h3 class="text-2xl font-bold mb-3 relative z-10 tracking-tight">Digital Store</h3>
+          <p class="text-slate-400 mb-8 leading-relaxed font-medium relative z-10 flex-grow">Top up game, lisensi, premium apps, dan produk digital pilihan dengan proses instan.</p>
+          <a href="https://lynk.id/himarushopofficial" target="_blank" class="mt-auto inline-flex items-center justify-center w-full bg-white text-slate-900 py-3 rounded-xl text-sm font-bold hover:bg-brand-50 relative z-10 btn-spring">
+            Belanja Sekarang
+          </a>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- TENTANG SAYA -->
+    <section id="tentang" class="section-content">
+      <div class="glass-card rounded-[2.5rem] p-8 md:p-14 shadow-figma max-w-4xl mx-auto border-t border-white">
+        <div class="flex flex-col md:flex-row gap-10 items-center md:items-start">
+          
+          <!-- Avatar/Icon Placeholder -->
+          <div class="w-32 h-32 md:w-40 md:h-40 shrink-0 bg-gradient-to-br from-brand-100 to-brand-300 rounded-[2rem] flex items-center justify-center text-5xl shadow-inner border-4 border-white transform rotate-3">
+            👋
           </div>
 
-          <div class="testi-card">
-            <div class="testi-profile">
-              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=60" alt="Avatar" class="testi-avatar">
-              <div class="testi-info">
-                <h4>Rian Hidayat</h4>
-                <span>Anggota Komunitas WA</span>
+          <!-- Content -->
+          <div class="flex-1 text-center md:text-left">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-6 tracking-tight">Tentang <span class="text-brand-500">Himaru</span></h2>
+            
+            <div class="text-slate-600 space-y-5 leading-relaxed text-lg font-medium">
+              <p>Saya adalah seorang livestreamer game, pemain Free Fire yang berfokus pada mode Clash Squad, dan seorang TikTok Affiliate yang aktif membagikan konten seputar dunia gaming dan hiburan.</p>
+              
+              <p>Sesuai dengan nama <strong class="text-slate-900 bg-brand-50 px-2 py-0.5 rounded-md">HimaruSetup</strong>, selain aktif di <i>in-game</i>, saya juga sangat antusias dengan dunia <i>hardware</i> dan perakitan PC. Saya kerap membagikan konten tentang <i>setup gaming</i>, produktivitas, serta tips meracik komponen PC (mengoptimalkan <i>airflow</i> agar suhu tetap adem).</p>
+              
+              <p>Melalui <a href="https://tiktok.com/@himarusetup" target="_blank" class="text-brand-500 font-bold hover:underline underline-offset-4 decoration-2">@himarusetup</a>, saya rutin melakukan siaran langsung untuk berinteraksi secara <i>real-time</i> dengan para penonton. Sampai jumpa di sesi live berikutnya!</p>
+            </div>
+            
+            <div class="mt-8 pt-8 border-t border-slate-200/60 flex flex-wrap gap-4 justify-center md:justify-start">
+              <div class="bg-white px-4 py-2 rounded-xl shadow-sm border border-slate-100 flex items-center gap-2">
+                <span class="text-2xl">🔥</span> <span class="font-bold text-slate-800">Clash Squad</span>
+              </div>
+              <div class="bg-white px-4 py-2 rounded-xl shadow-sm border border-slate-100 flex items-center gap-2">
+                <span class="text-2xl">💻</span> <span class="font-bold text-slate-800">PC Builder</span>
+              </div>
+              <div class="bg-white px-4 py-2 rounded-xl shadow-sm border border-slate-100 flex items-center gap-2">
+                <span class="text-2xl">🎙️</span> <span class="font-bold text-slate-800">Live Streamer</span>
               </div>
             </div>
-            <div class="testi-stars">★★★★★ <span style="color:#4b5563; font-size:0.8rem; font-weight:bold;">4.8</span></div>
-            <p class="testi-comment">"Makasi bang udah selalu bagi voucher dan dana kagetnya, gua seneng bang! Tiap live atau di grup WA selalu ada aja kejutan. Buat yang lain rugi banget sih kalau gak pantengin livenya. Sukses terus bang!"</p>
           </div>
-
-          <div class="testi-card">
-            <div class="testi-profile">
-              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&auto=format&fit=crop&q=60" alt="Avatar" class="testi-avatar">
-              <div class="testi-info">
-                <h4>Budi Santoso</h4>
-                <span>Pelanggan Game</span>
-              </div>
-            </div>
-            <div class="testi-stars">★★★★★ <span style="color:#4b5563; font-size:0.8rem; font-weight:bold;">5.0</span></div>
-            <p class="testi-comment">"Bang mantep banget racikan set pc nya bikin bluestack engga nge frame dan main epep lancar headshot terus! Barang-barang rekomendasi yang ada di katalog sini juga keren-keren parah, bikin setup kamar makin estetik. Thank you bang!"</p>
-          </div>
-
         </div>
       </div>
     </section>
 
-    <section id="tentang">
-      <h2>Tentang HimaruSetup</h2>
-      <div style="margin-top: 1rem; color: #4b5563; line-height: 1.6;">
-        <p><strong>Halo! Selamat datang di website resmi HimaruSetup.</strong></p>
-        <br>
-        <p>Saya adalah seorang livestreamer game, pemain Free Fire yang berfokus pada mode Clash Squad, dan seorang TikTok Affiliate yang aktif membagikan konten seputar dunia gaming dan hiburan.</p>
-        <br>
-        <p>Gaya bermain saya yang santai namun tetap serius diharapkan bisa membuat penonton betah menikmati live hingga akhir sesi. Dalam bermain Free Fire, saya mengandalkan strategi matang dan akurasi tembakan yang konsisten untuk mendominasi pertempuran di mode Clash Squad.</p>
-        <br>
-        <p>Sesuai dengan nama <strong>HimaruSetup</strong>, selain aktif di <i>in-game</i>, saya juga sangat antusias dengan dunia <i>hardware</i> dan perakitan PC. Saya kerap membagikan konten tentang <i>setup gaming</i>, produktivitas, serta tips meracik komponen PC (seperti mengoptimalkan <i>airflow</i> dan sistem pendingin agar suhu PC tetap stabil dan adem).</p>
-        <br>
-        <p>Melalui akun TikTok <a href="https://tiktok.com/@himarusetup" target="_blank" style="color: #10b981; text-decoration: none; font-weight: bold;">@himarusetup</a>, saya rutin melakukan siaran langsung untuk berinteraksi secara <i>real-time</i> dengan para penonton, memamerkan <i>gameplay</i>, serta berbagi tips seputar game dan perangkat <i>gaming</i>.</p>
-        <br>
-        <p>Terima kasih sudah berkunjung ke katalog saya, dan sampai jumpa di sesi <i>live streaming</i> selanjutnya!</p>
-      </div>
-    </section>
-
-   <section id="produk">
-      <h2>Produk Saya</h2>
-      <p style="color: #6b7280; margin-bottom: 1.5rem;">Silakan cari atau pilih kategori produk di bawah ini:</p>
+    <!-- PRODUK / KATALOG -->
+    <section id="produk" class="section-content">
       
-      <div class="search-container">
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <h2 class="text-4xl font-extrabold text-slate-900 mb-4 tracking-tight">Katalog Produk</h2>
+        <p class="text-slate-500 text-lg font-medium">Temukan produk digital maupun fisik terbaik pilihan HimaruSetup yang diperbarui secara otomatis.</p>
+      </div>
+
+      <!-- Search Bar (Figma Pill Style) -->
+      <div class="max-w-xl mx-auto relative mb-12 group">
+        <div class="absolute inset-y-0 left-2 pl-4 flex items-center pointer-events-none">
+          <svg class="h-6 w-6 text-slate-400 group-focus-within:text-brand-500 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+        </div>
         <input 
           type="text" 
           id="search-input" 
           oninput="searchProducts()" 
-          placeholder="Search products here..." 
+          placeholder="Cari perlengkapan setup..." 
           autocomplete="off"
-          class="custom-search-input"
+          class="block w-full pl-14 pr-6 py-4 bg-white/80 backdrop-blur-md border border-slate-200/80 rounded-full text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-4 focus:ring-brand-500/10 focus:border-brand-500 focus:bg-white transition-all shadow-sm text-lg font-medium"
         >
-        <span class="custom-search-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" class="sword-icon" viewBox="0 0 128 128">
-            <path fill="#CA2C31" d="m3.77 71.73l16.34-16.1l27.82-4.93l-2.75 14.56L7.57 76.82l-2.43-1.05z"></path>
-            <path fill="#A02422" d="M22.94 59.76L5.2 75.88l13.05 6.36l19.81-10.11v-4.77l4.05-10.92zm41.98 28.39l-8.57 3.72l-8.09 17.15s7.12 15.77 7.44 15.77c.32 0 4.37.32 4.37.32l14.4-16.1l3.64-27.5l-13.19 6.64z"></path>
-            <path fill="#CA2C31" d="M56.5 100.84s4.77-.97 8.17-2.59c3.4-1.62 7.6-4.04 7.6-4.04l-1.54 13.43l-15.05 17.13s-.59-.73-3.09-6.17c-1.99-4.34-2.68-5.89-2.68-5.89l6.59-11.87z"></path>
-            <path fill="#F7D74D" d="M31.58 80.66s-5.74-.48-12.03 7.47c-5.74 7.26-8.43 19.08-9.47 22.12s-3.53 3.66-2.7 5.05s4.42 1.31 8.85.76s8.23-1.94 8.23-1.94s-.19.48-.83 1.52c-.23.37-1.03.9-.97 1.45c.14 1.31 11.36 1.34 20.32-7.88c9.68-9.95 4.98-18.11 4.98-18.11L31.58 80.66z"></path>
-            <path fill="#FBF0B4" d="M33.31 85.29s-6.19.33-11.31 8.28s-7.5 17.16-7.01 17.78c.48.62 10.02-2.83 12.31-2.14c1.57.48.76 2.07 1.18 2.49c.35.35 4.49.94 11.19-6.32c6.71-7.26 5.12-17.46 5.12-17.46l-11.48-2.63z"></path>
-            <path fill="#858585" d="M36.35 74.44s-3.11 2.77-4.22 4.36c-1.11 1.59-1.11 1.73-1.04 2.21c.07.48 1.22 5.75 6.01 10.37c5.88 5.67 11.13 6.43 11.89 6.43c.76 0 5.81-5.67 5.81-5.67l-18.45-17.7z"></path>
-            <path fill="#437687" d="M50.1 91.24s5.04 3.31 13.49.47c11.55-3.88 20.02-12.56 30.51-23.52c10.12-10.58 18.61-23.71 18.61-23.71l-5.95-19.93L50.1 91.24z"></path>
-            <path fill="#3F545F" d="m67.99 80.33l1.39-4.32l3.48.49s2.65 1.25 4.6 2.16c1.95.91 4.46 1.6 4.46 1.6l-4.95 4.18s-2.7-1.02-4.67-1.88c-2.22-.97-4.31-2.23-4.31-2.23z"></path>
-            <path fill="#8DAFBF" d="M84.32 16.14s-9.62 5.58-23.41 18.63c-12.43 11.76-21.64 22.4-23.87 31.45c-1.86 7.58-.87 12.18 3.36 17.15c4.47 5.26 9.71 7.87 9.71 7.87s3.94.06 20.38-12.59C91 62.86 107.43 36.42 107.43 36.42L84.32 16.14z"></path>
-            <path fill="#D83F22" d="M104.18 41.84s-8.37-3.57-14.34-11.9c-5.93-8.27-5.46-13.86-5.46-13.86s4.96-3.89 16.11-8.34c7.5-2.99 17.71-4.52 21.07-2.03s-2.3 14.98-2.3 14.98l-10.31 19.96l-4.77 1.19z"></path>
-            <path fill="#6896A5" d="M68.17 80.4s-7.23-3.69-11.83-8.94c-8.7-9.91-10.5-20.79-10.5-20.79l4.37-5.13S51.3 57.1 60.63 67.09c6.08 6.51 12.43 9.49 12.43 9.49s-1.27 1.07-2.63 2.11c-.87.67-2.26 1.71-2.26 1.71z"></path>
-            <path fill="#A02422" d="M112.71 44.48s4.34-5.23 8.45-17.02c5.74-16.44.74-21.42.74-21.42s-1.69 7.82-7.56 18.69c-4.71 8.71-10.41 17-10.41 17s3.14 1.41 4.84 1.9c2.14.62 3.94.85 3.94.85z"></path>
-            <path fill="#B3E1EE" d="M39.81 69.66c1.3 1.24 3.27-.06 4.56-3.1c1.3-3.04 1.28-4.74.28-5.46c-1.24-.9-3.32 1.07-4.23 2.82c-1 1.94-1.59 4.8-.61 5.74zm45.14-49.53s-7.61 5.47-15.73 12.91c-7.45 6.83-12.39 12.17-13.07 13.41c-.72 1.33-.73 3.21-.17 4.17s1.8 1.46 2.93.62c1.13-.85 9.18-9.75 16.45-16.11c6.65-5.82 11.78-9.51 11.78-9.51s2.08-3.68 1.74-4.52c-.34-.85-3.93-.97-3.93-.97z"></path>
-            <path fill="#ED6A65" d="M84.95 20.13s5.62-4.31 11.74-7.34c5.69-2.82 11.35-5.17 12.37-3.13c.97 1.94-5.37 4.58-10.95 8.14c-5.58 3.56-10.95 7.81-10.95 7.81s-.82-1.5-1.35-2.89a23.7 23.7 0 0 1-.86-2.59z"></path>
-            <path fill="#E1E1E1" d="M89.59 39.25c-5.57-5.13-13.32-3.75-17.14.81c-3.92 4.7-3.63 11.88 1 16.2c4.21 3.92 12.04 4.81 16.76-.69c4.2-4.88 3.94-12.13-.62-16.32z"></path>
-            <path fill="#3F545F" d="M75.33 41.87c-3.31 3.25-3.13 9.69.81 12.63c3.44 2.57 8.32 2.44 11.38-.69c3.06-3.13 3.06-8.82.19-11.76c-3.3-3.37-8.59-3.9-12.38-.18z"></path>
-            <path fill="#A02524" d="M50 76.89s6.19-6.28 6.87-5.6c.68.68.59 4.49-2.37 8.73c-2.97 4.24-9.5 11.79-14.67 16.88c-5.1 5.01-12.29 10.74-12.97 10.64c-.53-.08-2.68-1.15-3.54-2.19c-.84-1.03 1.67-5.9 2.68-7.51c1.02-1.61 24-20.95 24-20.95z"></path>
-            <path fill="#CA2C31" d="M21.23 101.85c-.08 1.44 2.12 3.54 2.12 3.54L56.87 71.3s-1.57-1.77-6.19 1.1c-4.66 2.9-8.74 6.38-14.76 12.21c-8.39 8.14-14.61 15.8-14.69 17.24z"></path>
-            <path fill="#FFF" d="M19.06 36.95c-1.11 1.11-1.16 2.89.08 3.91c1.1.91 2.89.32 3.56-.5s.59-2.6-.3-3.48c-.89-.89-2.66-.6-3.34.07z"></path>
-            <path fill="#FFF" d="M41.02 35.65c-.84.93-.57 2.31.21 2.82s1.95.46 2.52-.24c.51-.63.57-1.89-.21-2.67c-.68-.67-1.98-.51-2.52.09z" opacity=".5"></path>
-            <path fill="#FFF" d="M55.55 11.89s1.22-3.48 1.94-3.52c.73-.04 1.78 3.48 1.78 3.48s3.61.04 3.85.57c.31.68-2.31 2.96-2.31 2.96s.85 3.4.45 3.81c-.45.45-3.56-1.34-3.56-1.34s-3.2 2.23-3.89 1.62c-.6-.53.65-4.13.65-4.13s-3-2.19-2.84-2.8c.23-.86 3.93-.65 3.93-.65zm41.46 83.44c1.21.67 2.73.29 3.29-1c.51-1.15-.43-2.52-1.28-2.89c-.85-.37-2.34.12-2.88 1.09c-.53.96.14 2.4.87 2.8zm17.18-29.49c-.69-1.07-2.18-1.42-3.15-.56c-.94.84-.71 2.16-.18 2.83c.53.67 1.95.92 2.81.37s.94-2 .52-2.64z"></path>
-          </svg>
-        </span>
       </div>
-      <div class="categories" id="category-container"></div>
-      <div class="subcategories" id="subcategory-container"></div>
-      <div class="products-grid" id="products-container">
-        <p>Memuat produk...</p>
-      </div>
-    </section>
 
-    <section id="kontak">
-      <h2>Kontak & Komunitas</h2>
-      <p style="margin-top: 1rem; color: #4b5563;">Mari mabar, berdiskusi soal setup PC, atau sekadar ngobrol! Anda bisa menemukan dan menghubungi saya melalui platform di bawah ini:</p>
-      
-      <div style="margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.8rem;">
-        <a href="https://tiktok.com/@himarusetup" target="_blank" style="text-decoration: none; color: #1f2937; background: #f9fafb; padding: 0.75rem 1rem; border-radius: 8px; border: 1px solid #e5e7eb; transition: all 0.2s; font-weight: 500;">
-          📱 TikTok: <span style="color: #10b981;">@himarusetup</span>
-        </a>
-        <a href="https://t.me/himarusetup" target="_blank" style="text-decoration: none; color: #1f2937; background: #f9fafb; padding: 0.75rem 1rem; border-radius: 8px; border: 1px solid #e5e7eb; transition: all 0.2s; font-weight: 500;">
-          ✈️ Telegram: <span style="color: #10b981;">@himarusetup</span>
-        </a>
-        <a href="https://whatsapp.com/channel/0029VbAYAYbK0IBfrCjc8j3U" target="_blank" style="text-decoration: none; color: #1f2937; background: #f9fafb; padding: 0.75rem 1rem; border-radius: 8px; border: 1px solid #e5e7eb; transition: all 0.2s; font-weight: 500;">
-          💬 Saluran WhatsApp: <span style="color: #10b981;">Join Komunitas</span>
-        </a>
-        <a href="https://github.com/rikdevweb" target="_blank" style="text-decoration: none; color: #1f2937; background: #f9fafb; padding: 0.75rem 1rem; border-radius: 8px; border: 1px solid #e5e7eb; transition: all 0.2s; font-weight: 500;">
-          💻 GitHub: <span style="color: #10b981;">rikdevweb (ERIK)</span>
-        </a>
-        <div style="color: #1f2937; background: #f9fafb; padding: 0.75rem 1rem; border-radius: 8px; border: 1px solid #e5e7eb; font-weight: 500;">
-          🎧 Discord: <span style="color: #10b981;">himaruofficial</span>
+      <!-- Categories Container (Pill Tags) -->
+      <div class="mb-6">
+        <div class="flex items-center gap-3 overflow-x-auto no-scrollbar pb-4 snap-x" id="category-container">
+          <!-- Rendered by JS -->
         </div>
       </div>
+
+      <!-- Subcategories Container -->
+      <div class="mb-10 hidden" id="subcategory-container">
+        <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-2" id="subcategory-wrapper">
+            <!-- Rendered by JS -->
+        </div>
+      </div>
+
+      <!-- Products Grid -->
+      <div id="products-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
+        <!-- Loading State -->
+        <div class="col-span-full py-20 flex flex-col items-center justify-center">
+          <div class="loader mb-4"></div>
+          <p class="text-slate-500 font-medium text-lg">Sinkronisasi database...</p>
+        </div>
+      </div>
+
     </section>
-  </div>
 
- <div id="stats-container" style="display: flex; gap: 20px; justify-content: center; margin: 20px 0;">
-  <div style="background: #f3f4f6; padding: 10px 20px; border-radius: 50px; font-weight: 600; font-size: 0.9rem; color: #374151; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
-    📦 Total Produk: <span id="total-produk">0</span>
-  </div>
-  <div style="background: #f3f4f6; padding: 10px 20px; border-radius: 50px; font-weight: 600; font-size: 0.9rem; color: #374151; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
-    ❤️ Total Like: <span id="total-likes">0</span>
-  </div>
-</div>
+    <!-- KONTAK -->
+    <section id="kontak" class="section-content">
+      <div class="glass-card rounded-[2.5rem] p-8 md:p-14 shadow-figma max-w-3xl mx-auto text-center border-t border-white">
+        
+        <div class="w-20 h-20 bg-slate-100 text-slate-700 rounded-3xl flex items-center justify-center text-4xl mx-auto mb-6 shadow-sm border border-slate-200 transform -rotate-3">
+          🤝
+        </div>
+        
+        <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4 tracking-tight">Mari Berjejaring</h2>
+        <p class="text-slate-500 mb-10 leading-relaxed font-medium text-lg">Punya pertanyaan soal rakitan PC atau ingin mabar? Hubungi saya melalui platform di bawah ini.</p>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-left">
+          <!-- Contact Cards -->
+          <a href="https://tiktok.com/@himarusetup" target="_blank" class="flex items-center gap-4 p-5 rounded-2xl bg-white border border-slate-200/60 hover:border-brand-300 hover:shadow-md transition-all btn-spring group">
+            <div class="w-12 h-12 rounded-xl bg-slate-50 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">📱</div>
+            <div>
+              <div class="text-xs text-slate-400 font-bold uppercase tracking-wider mb-0.5">TikTok</div>
+              <div class="text-slate-800 font-bold text-lg group-hover:text-brand-600 transition-colors">@himarusetup</div>
+            </div>
+          </a>
+          
+          <a href="https://t.me/himarusetup" target="_blank" class="flex items-center gap-4 p-5 rounded-2xl bg-white border border-slate-200/60 hover:border-blue-300 hover:shadow-md transition-all btn-spring group">
+            <div class="w-12 h-12 rounded-xl bg-slate-50 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">✈️</div>
+            <div>
+              <div class="text-xs text-slate-400 font-bold uppercase tracking-wider mb-0.5">Telegram</div>
+              <div class="text-slate-800 font-bold text-lg group-hover:text-blue-600 transition-colors">@himarusetup</div>
+            </div>
+          </a>
+          
+          <a href="https://whatsapp.com/channel/0029VbAYAYbK0IBfrCjc8j3U" target="_blank" class="flex items-center gap-4 p-5 rounded-2xl bg-white border border-slate-200/60 hover:border-emerald-300 hover:shadow-md transition-all btn-spring group">
+            <div class="w-12 h-12 rounded-xl bg-emerald-50 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">💬</div>
+            <div>
+              <div class="text-xs text-slate-400 font-bold uppercase tracking-wider mb-0.5">WhatsApp</div>
+              <div class="text-slate-800 font-bold text-lg group-hover:text-emerald-600 transition-colors">Komunitas</div>
+            </div>
+          </a>
+          
+          <div class="flex items-center gap-4 p-5 rounded-2xl bg-slate-50 border border-slate-200/60 cursor-default">
+            <div class="w-12 h-12 rounded-xl bg-white flex items-center justify-center text-2xl shadow-sm">🎧</div>
+            <div>
+              <div class="text-xs text-slate-400 font-bold uppercase tracking-wider mb-0.5">Discord</div>
+              <div class="text-slate-800 font-bold text-lg">himaruofficial</div>
+            </div>
+          </div>
+        </div>
 
-  <footer>
-    <p>&copy; 2026 <span class="highlight">HimaruSetup</span>. All Rights Reserved.</p>
-    <p style="font-size: 0.8rem;">Built for Gamers, Powered by Affiliate 💚</p>
+      </div>
+    </section>
+
+    <!-- Global Stats -->
+    <div id="stats-container" class="mt-16 flex flex-wrap gap-4 justify-center">
+      <div class="glass-pill px-6 py-3 rounded-full shadow-sm flex items-center gap-3">
+        <span class="text-xl">📦</span>
+        <span class="text-slate-500 font-semibold">Total Produk:</span>
+        <span id="total-produk" class="text-slate-900 font-extrabold text-xl">0</span>
+      </div>
+      <div class="glass-pill px-6 py-3 rounded-full shadow-sm flex items-center gap-3">
+        <span class="text-xl">❤️</span>
+        <span class="text-slate-500 font-semibold">Suka Katalog:</span>
+        <span id="total-likes" class="text-brand-500 font-extrabold text-xl">0</span>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="mt-auto py-10 text-center border-t border-slate-200/50">
+    <p class="font-bold text-slate-600 mb-1">&copy; 2026 <span class="text-slate-900">HimaruSetup</span>.</p>
+    <p class="text-sm text-slate-400 font-medium">Built with precision for gamers 💚</p>
   </footer>
-<script src="script.js"></script>
-</body>
-</html>
