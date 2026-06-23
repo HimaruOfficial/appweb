@@ -1,68 +1,68 @@
- /* Mesh Gradient Background */
-    body {
-      background-color: #f8fafc;
-      background-image: 
-        radial-gradient(at 0% 0%, rgba(16, 185, 129, 0.08) 0px, transparent 50%),
-        radial-gradient(at 100% 0%, rgba(59, 130, 246, 0.05) 0px, transparent 50%),
-        radial-gradient(at 50% 100%, rgba(16, 185, 129, 0.05) 0px, transparent 50%);
-      background-attachment: fixed;
-      overflow-x: hidden;
-      color: #1e293b;
-    }
+/* Mesh Gradient Background */
+body {
+  background-color: #f8fafc;
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(16, 185, 129, 0.08) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(59, 130, 246, 0.05) 0px, transparent 50%),
+    radial-gradient(at 50% 100%, rgba(16, 185, 129, 0.05) 0px, transparent 50%);
+  background-attachment: fixed;
+  overflow-x: hidden;
+  color: #1e293b;
+}
 
-    html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; }
 
-    /* Hide scrollbar completely but keep functionality */
-    .no-scrollbar::-webkit-scrollbar { display: none; }
-    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+/* Hide scrollbar completely but keep functionality */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-    /* Section Transition */
-    .section-content {
-      display: none;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .section-content.active {
-      display: block;
-      opacity: 1;
-      transform: translateY(0);
-      animation: springFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
+/* Section Transition */
+.section-content {
+  display: none;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.section-content.active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+  animation: springFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
 
-    @keyframes springFade {
-      0% { opacity: 0; transform: translateY(20px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
+@keyframes springFade {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
 
-    /* Floating Donasi Animation */
-    @keyframes float-soft {
-      0%, 100% { transform: translateY(0px) scale(1); }
-      50% { transform: translateY(-8px) scale(1.02); }
-    }
-    .floating-donasi {
-      animation: float-soft 4s ease-in-out infinite;
-    }
+/* Floating Donasi Animation */
+@keyframes float-soft {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-8px) scale(1.02); }
+}
+.floating-donasi {
+  animation: float-soft 4s ease-in-out infinite;
+}
 
-    /* Glassmorphism utility */
-    .glass-pill {
-      background: rgba(255, 255, 255, 0.7);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.6);
-    }
+/* Glassmorphism utility */
+.glass-pill {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
 
-    .glass-card {
-      background: rgba(255, 255, 255, 0.6);
-      backdrop-filter: blur(40px);
-      -webkit-backdrop-filter: blur(40px);
-      border: 1px solid rgba(255, 255, 255, 1);
-    }
+.glass-card {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  border: 1px solid rgba(255, 255, 255, 1);
+}
 
-    /* Button Micro-interactions */
-    .btn-spring {
-      transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-    .btn-spring:active {
-      transform: scale(0.95);
-    }
+/* Button Micro-interactions */
+.btn-spring {
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.btn-spring:active {
+  transform: scale(0.95);
+}
